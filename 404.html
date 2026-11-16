@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#f5f2e9">
+  <title>Page not found · Yash Kumar</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@600;700&display=swap');
+    :root{--paper:#f5f2e9;--ink:#252923;--muted:#686b61;--blue:#3253a5;--lime:#d3de68;--display:'Space Grotesk',Arial,sans-serif;--body:'DM Sans',Arial,sans-serif}
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%}
+    body{min-height:100dvh;display:grid;place-items:center;padding:32px 16px;background:var(--paper);color:var(--ink);font:16px/1.6 var(--body)}
+    a{color:inherit}
+    a:focus-visible,.box:focus-visible{outline:3px solid var(--blue);outline-offset:5px}
+    .lost{width:100%;max-width:560px}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+    .wordmark{display:flex;align-items:center;gap:10px;text-decoration:none;font:700 13px/1.3 var(--display);letter-spacing:.05em}
+    .mark{display:grid;place-items:center;width:34px;height:34px;background:var(--ink);color:var(--paper);border-radius:3px;font-size:16px;letter-spacing:-2px}
+    .code{font:700 11px var(--body);letter-spacing:.14em;color:var(--muted)}
+    .scene{border:2px solid var(--ink);border-radius:14px;overflow:hidden;background:#e3e7d0;box-shadow:6px 6px 0 #d9dacd}
+    .field{display:flex;justify-content:center;padding:26px 16px 14px;background:radial-gradient(#25292314 1.2px,transparent 1.6px) 0 0/14px 14px,linear-gradient(#f4f5ea,#eceedf 55%,#e3e7d0)}
+    .oak{position:relative;width:170px;height:172px}
+    .oak img{position:absolute;left:50%;bottom:12px;z-index:1;width:160px;height:160px;translate:-50% 0;image-rendering:pixelated;filter:drop-shadow(0 4px 0 #2222)}
+    .platform{position:absolute;left:50%;bottom:0;width:148px;height:36px;translate:-50% 0;border-radius:50%;background:radial-gradient(ellipse at 50% 38%,#f6f7ec 0 42%,#d3d7c0 43% 100%);box-shadow:0 0 0 2px #2529231f,inset 0 -4px 0 #00000012}
+    .box{position:relative;margin:0 10px 10px;padding:13px 40px 13px 18px;min-height:82px;display:flex;align-items:center;border-radius:9px;background:#26345f;color:#fffdf5;border:3px solid #fffdf5;box-shadow:0 0 0 2px var(--ink),inset 0 0 0 2px #3c5499;cursor:pointer;user-select:none}
+    .box p{margin:0;font:500 17px/1.45 var(--body)}
+    .arrow{position:absolute;right:14px;bottom:10px;font-size:11px;color:var(--lime);opacity:0}
+    .box.is-done .arrow{opacity:1;animation:bob 1s ease-in-out infinite}
+    .actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;margin-top:26px;font-size:14px}
+    .home{padding:10px 16px;border:1px solid var(--ink);border-radius:4px;background:var(--ink);color:var(--paper);text-decoration:none}
+    .home:hover{background:#3a3f37}
+    .actions a:not(.home){text-underline-offset:4px}
+    .credit{margin:28px 0 0;font-size:11px;color:var(--muted)}
+    .visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+    @keyframes bob{50%{translate:0 3px}}
+    @media(max-width:480px){.oak{width:128px;height:132px}.oak img{width:120px;height:120px}.platform{width:112px;height:28px}.box{padding:11px 34px 11px 14px;min-height:72px}.box p{font-size:15px}}
+    @media(prefers-reduced-motion:reduce){.box.is-done .arrow{animation:none}}
+  </style>
+</head>
+<body>
+  <main class="lost">
+    <div class="top"><a class="wordmark" href="/"><span class="mark">YK</span>YASH KUMAR</a><span class="code">404 · PAGE NOT FOUND</span></div>
+    <div class="scene">
+      <div class="field"><div class="oak"><img src="/assets/oak.png" alt="Professor Oak" width="160" height="160"><span class="platform" aria-hidden="true"></span></div></div>
+      <div class="box" id="box">
+        <p aria-hidden="true"><span id="line">There’s a time and place for everything! But not now.</span></p><span class="arrow" aria-hidden="true">▼</span>
+        <p class="visually-hidden">Professor Oak’s words echoed: there’s a time and place for everything, but not now. This page doesn’t exist.</p>
+      </div>
+    </div>
+    <nav class="actions" aria-label="Where to go instead"><a class="home" href="/">Back to the site ↗</a><a href="/#journey">Journey</a><a href="/#projects">Projects</a></nav>
+    <p class="credit">Professor Oak sprite from Pokémon Showdown. Pokémon and its artwork belong to Nintendo, Game Freak and The Pokémon Company.</p>
+  </main>
+  <script>
+    // Types Oak's lines like an in-game message; clicking skips the typing or moves to the next line.
+    const lines = ['Professor Oak’s words echoed…', 'There’s a time and place for everything! But not now.', 'This page doesn’t exist. Let’s get you back on the route.'];
+    const box = document.getElementById('box');
+    const line = document.getElementById('line');
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let index = 0, typing = null, next = null;
+    function show(i, type = true) {
+      clearInterval(typing);clearTimeout(next);typing = next = null;
+      index = i;
+      const text = lines[i];
+      const done = () => {line.textContent = text;box.classList.add('is-done');typing = null;if (i < lines.length - 1) next = setTimeout(() => show(i + 1), 1700);};
+      box.classList.remove('is-done');
+      if (!type || still) {done();return;}
+      let n = 0;line.textContent = '';
+      typing = setInterval(() => {n += 1;line.textContent = text.slice(0, n);if (n >= text.length) {clearInterval(typing);done();}}, 32);
+    }
+    box.addEventListener('click', () => {if (typing) show(index, false);else if (index < lines.length - 1) show(index + 1);});
+    if (still) show(1, false); else setTimeout(() => show(0), 350);
+  </script>
+</body>
+</html>
