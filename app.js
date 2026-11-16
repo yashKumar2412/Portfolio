@@ -236,6 +236,12 @@ $('.collection-tabs').addEventListener('keydown', e => {
   i = e.key === 'Home' ? 0 : e.key === 'End' ? n - 1 : (i + (e.key === 'ArrowRight' ? 1 : n - 1)) % n;
   showCollection(viewNames[i], false);$(`#tab-${viewNames[i]}`).focus();
 });
+// The wordmark goes "home" in place: scroll to the top and clear any #section from the address bar.
+$('.wordmark').addEventListener('click', e => {
+  e.preventDefault();
+  history.replaceState(null, '', location.pathname + location.search);
+  window.scrollTo({top:0, behavior:scrollBehavior()});
+});
 $('#reroll-all').addEventListener('click', rerollAll);
 // Journey cards: an accordion whose cards glide open and shut instead of snapping.
 // `data-state` flips immediately (it drives the +/− icon); `open` only drops once the close animation ends.
