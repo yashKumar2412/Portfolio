@@ -97,7 +97,27 @@ function renderProjects() {
   // Every entry is rendered into the same grid cell and only the selected one is visible,
   // so the screen is always as tall as the longest entry and the device never changes size.
   const pages = projects.map((_, i) => `<article class="dex-page${i === selectedProject ? ' is-active' : ''}" data-page="${i}" aria-labelledby="dex-title-${i}"${i === selectedProject ? '' : ' inert'}>${renderEntry(i, 0)}</article>`).join('');
-  return `<div class="dex"><div class="dex-bar" aria-hidden="true"><span class="dex-lens"></span><span class="dex-led"></span><span class="dex-led"></span><span class="dex-led"></span><span class="dex-bar-label">YK·DEX &nbsp;·&nbsp; ${pad(projects.length)} BUILT</span></div><div class="dex-body"><ol class="dex-list" aria-label="Projects">${entries}</ol><div class="dex-screen" id="dex-screen">${pages}</div></div></div>`;
+  const pager = `<div class="dex-pager"><button class="dex-arrow" data-dex-step="-1" aria-label="Previous project">◀</button><div class="dex-pager-current" id="dex-pager-current" aria-live="polite">${pagerCurrentHTML()}</div><button class="dex-arrow" data-dex-step="1" aria-label="Next project">▶</button></div>`;
+  return `<div class="dex"><div class="dex-bar" aria-hidden="true"><span class="dex-lens"></span><span class="dex-led"></span><span class="dex-led"></span><span class="dex-led"></span><span class="dex-bar-label">YK·DEX &nbsp;·&nbsp; ${pad(projects.length)} BUILT</span></div><div class="dex-body"><ol class="dex-list" aria-label="Projects">${entries}</ol>${pager}<div class="dex-screen" id="dex-screen">${pages}</div></div></div>`;
+}
+// Phones and tablets show one entry at a time with previous/next arrows instead of the list.
+// While a skill filter is on, the arrows step only through the matching projects.
+function pagerOrder() {
+  const all = projects.map((_, i) => i);
+  return activeSkill ? all.filter(i => projects[i].skills.includes(activeSkill)) : all;
+}
+function pagerCurrentHTML() {
+  const p = projects[selectedProject];
+  const order = pagerOrder();
+  const pos = order.indexOf(selectedProject);
+  return `<span class="dex-mini" style="--card-bg:${p.color}">${spriteImg(encounters.projects[selectedProject])}</span><span class="dex-entry-copy"><span class="dex-no">No. ${pad(selectedProject + 1)} · ${pos < 0 ? '–' : pos + 1} of ${order.length}</span><span class="dex-name">${p.name}</span></span>`;
+}
+function updatePager() {const el = $('#dex-pager-current');if (el) el.innerHTML = pagerCurrentHTML();}
+function stepProject(step) {
+  const order = pagerOrder();
+  if (!order.length) return;
+  const pos = order.indexOf(selectedProject);
+  selectProject(pos < 0 ? order[0] : order[(pos + step + order.length) % order.length], false, false);
 }
 function dexPage(i) {return document.querySelector(`.dex-page[data-page="${i}"]`);}
 // Replays the screen flicker and the Pokémon's release animation on the newly shown page.
@@ -154,16 +174,17 @@ function showStop(i) {
   stop.scrollIntoView({behavior:scrollBehavior(), block:'center'});
   stop.querySelector('summary').focus({preventScroll:true});
 }
-function selectProject(i, fromKeyboard = false) {
+function selectProject(i, fromKeyboard = false, scroll = true) {
   if (!projects[i]) return;
   selectedProject = i;
   document.querySelectorAll('.dex-entry').forEach(b => b.setAttribute('aria-current', String(Number(b.dataset.project) === i)));
   document.querySelectorAll('.dex-page').forEach(page => {const active = Number(page.dataset.page) === i;page.classList.toggle('is-active', active);page.inert = !active;});
+  updatePager();
   const page = dexPage(i);
   replay(page);
   page.querySelectorAll('.sprite').forEach(replay);
   if (fromKeyboard) document.querySelector(`.dex-entry[data-project="${i}"]`).focus();
-  else if (narrowLayout.matches) page.scrollIntoView({behavior:scrollBehavior(), block:'nearest'});
+  else if (scroll && narrowLayout.matches) page.scrollIntoView({behavior:scrollBehavior(), block:'nearest'});
 }
 // Swap the Pokémon shown for one item, or for every item in the current view.
 function refreshSprite(view, i) {
@@ -172,6 +193,7 @@ function refreshSprite(view, i) {
     if (mini) mini.innerHTML = spriteImg(encounters.projects[i]);
     const page = dexPage(i);
     if (page) page.innerHTML = renderEntry(i, 0);
+    if (i === selectedProject) updatePager();
   } else {
     const slot = document.querySelectorAll('.stop-encounter')[i];
     if (slot) slot.innerHTML = encounterHTML(i, 0);
@@ -209,6 +231,7 @@ function openPack(view, trigger) {
 
 document.addEventListener('click', event => {
   const pack = event.target.closest('[data-pack]');if (pack) {openPack(pack.dataset.pack, pack);return;}
+  const dexStep = event.target.closest('[data-dex-step]');if (dexStep) {stepProject(Number(dexStep.dataset.dexStep));return;}
   const partner = event.target.closest('[data-reroll]');if (partner) {reroll(partner.dataset.reroll, Number(partner.dataset.index));return;}
   const entry = event.target.closest('[data-project]');if (entry) {selectProject(Number(entry.dataset.project));return;}
   const badge = event.target.closest('[data-stop]');if (badge) {showStop(Number(badge.dataset.stop));return;}
@@ -295,14 +318,19 @@ function skillTools(skill) {
   return (SKILL_TOOLS[skill.id] || []).map(t => t.split('::')).filter(([label, pattern]) => new RegExp(pattern || escapeRe(label), 'i').test(text)).map(([label]) => label);
 }
 function renderSkillFilter() {
-  const chips = SKILLS.filter(s => skillCount(s.id)).map(s => `<button class="skill-chip" data-skill="${s.id}" aria-pressed="false">${s.label}<span class="skill-count">${skillCount(s.id)}</span></button>`).join('');
-  $('#skill-filter').innerHTML = `<div class="skill-head"><p class="eyebrow">FILTER BY SKILL</p><p class="skill-status" id="skill-status" aria-live="polite"></p><button class="skill-clear" id="skill-clear" hidden>Clear ✕</button></div><div class="skill-chips" id="skill-chips">${chips}</div><p class="skill-tools" id="skill-tools" hidden></p>`;
+  const available = SKILLS.filter(s => skillCount(s.id));
+  const chips = available.map(s => `<button class="skill-chip" data-skill="${s.id}" aria-pressed="false">${s.label}<span class="skill-count">${skillCount(s.id)}</span></button>`).join('');
+  // Phones get a native dropdown instead of chips: it opens the system picker and fits any number of skills.
+  const options = available.map(s => `<option value="${s.id}">${s.label} (${skillCount(s.id)})</option>`).join('');
+  const select = `<label class="skill-select-wrap"><span class="visually-hidden">Filter by skill</span><select class="skill-select" id="skill-select"><option value="">All skills</option>${options}</select></label>`;
+  $('#skill-filter').innerHTML = `<div class="skill-head"><p class="eyebrow">FILTER BY SKILL</p><p class="skill-status" id="skill-status" aria-live="polite"></p><button class="skill-clear" id="skill-clear" hidden>Clear ✕</button></div><div class="skill-chips" id="skill-chips">${chips}</div>${select}<p class="skill-tools" id="skill-tools" hidden></p>`;
 }
 const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
 function applyFilter() {
   const skill = SKILL[activeSkill] || null;
   const items = viewItems();
   document.querySelectorAll('.skill-chip').forEach(c => c.setAttribute('aria-pressed', String(c.dataset.skill === activeSkill)));
+  $('#skill-select').value = activeSkill || '';
   $('#skill-clear').hidden = !skill;
   $('#skill-status').innerHTML = skill
     ? `<strong>${skill.label}</strong> · ${items.filter(i => i.skills.includes(skill.id)).length} of ${plural(items.length, selectedView === 'projects' ? 'project' : 'stop')}`
@@ -331,8 +359,9 @@ function applyFilter() {
     });
     if (skill && !projects[selectedProject].skills.includes(skill.id)) {
       const first = projects.findIndex(p => p.skills.includes(skill.id));
-      if (first >= 0) selectProject(first);
+      if (first >= 0) selectProject(first, false, false);
     }
+    updatePager();
   }
 }
 function setSkill(id) {activeSkill = activeSkill === id ? null : id;applyFilter();}
@@ -341,6 +370,23 @@ $('#skill-filter').addEventListener('click', e => {
   const chip = e.target.closest('[data-skill]');if (chip) {setSkill(chip.dataset.skill);return;}
   if (e.target.closest('#skill-clear')) setSkill(null);
 });
+$('#skill-filter').addEventListener('change', e => {
+  if (e.target.id !== 'skill-select') return;
+  activeSkill = e.target.value || null;
+  applyFilter();
+});
+// Swipe left/right on the Pokédex screen to move between projects on touch screens.
+let dexTouch = null;
+panel.addEventListener('touchstart', e => {
+  dexTouch = e.touches.length === 1 && e.target.closest('.dex-screen') ? {x:e.touches[0].clientX, y:e.touches[0].clientY} : null;
+}, {passive:true});
+panel.addEventListener('touchend', e => {
+  if (!dexTouch) return;
+  const dx = e.changedTouches[0].clientX - dexTouch.x;
+  const dy = e.changedTouches[0].clientY - dexTouch.y;
+  dexTouch = null;
+  if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) stepProject(dx < 0 ? 1 : -1);
+}, {passive:true});
 $('#browse').addEventListener('click', () => showCollection('journey'));
 $('#skip-reveal').addEventListener('click', finishOpening);
 $('#reveal-dialog').addEventListener('cancel', e => {e.preventDefault();finishOpening();});
@@ -365,7 +411,8 @@ function showBattleLine(i, type = true) {
   const line = $('#battle-line');
   const done = () => {
     line.textContent = text;battleBox.classList.add('is-done');battleTyping = null;
-    if (i < BATTLE_LINES.length - 1) battleNext = setTimeout(() => showBattleLine(i + 1), 1500);
+    // Keep alternating between the lines; the last one (the instruction) stays up longer.
+    if (!reducedMotion.matches) battleNext = setTimeout(() => showBattleLine((i + 1) % BATTLE_LINES.length), i < BATTLE_LINES.length - 1 ? 1800 : 4000);
   };
   battleBox.classList.remove('is-done');
   if (!type || reducedMotion.matches) {done();return;}
