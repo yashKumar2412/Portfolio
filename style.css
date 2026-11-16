@@ -229,7 +229,7 @@ mark{background:#e2ec86;color:inherit;border-radius:2px;padding:0 2px;-webkit-bo
 .tc-head span:last-child{color:var(--lime)}
 .tc-body{display:grid;grid-template-columns:250px minmax(0,1fr);gap:36px;padding:28px 32px 32px}
 .tc-photo{display:grid;place-items:center;aspect-ratio:5 / 6;border:2px solid var(--ink);border-radius:10px;overflow:hidden;background:linear-gradient(#f4f5ea,#e3e7d0)}
-.tc-photo img{display:block;width:100%;height:100%;object-fit:cover}
+.tc-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:53% 50%}
 .tc-initials{font:700 76px/1 var(--display);letter-spacing:-4px;color:#2529232e}
 .tc-stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:14px;border:2px solid var(--ink);border-radius:10px;overflow:hidden;background:#fff}
 .tc-stats div{padding:10px 4px 9px;text-align:center}
