@@ -30,7 +30,6 @@ nav button:hover{color:var(--coral)}
 .contact-link{padding:10px 16px;border:1px solid var(--ink);border-radius:4px}
 footer{border-top:1px solid var(--line);padding:22px 0;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:11px}
 footer>div{display:flex;gap:22px}
-.footer-star{margin:0 10px}
 .subtle-button{background:none;font-size:11px;color:var(--muted);padding:0}
 .subtle-button:hover{text-decoration:underline}
 
@@ -223,6 +222,32 @@ mark{background:#e2ec86;color:inherit;border-radius:2px;padding:0 2px;-webkit-bo
 .stop-card ul{font-size:15px;margin:0 0 0 94px;padding:16px 0 0 18px}
 .stop-card li+li{margin-top:8px}
 
+/* About: trainer card */
+.about{border-top:1px solid var(--line);padding:34px 0 64px}
+.trainer-card{margin-top:26px;border:2px solid var(--ink);border-radius:16px;overflow:hidden;background:#fbf8ef;box-shadow:6px 6px 0 #d9dacd}
+.tc-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 24px;background:var(--blue);border-bottom:2px solid var(--ink);color:#fffdf5;font:700 12px/1.4 var(--display);letter-spacing:.16em}
+.tc-head span:last-child{color:var(--lime)}
+.tc-body{display:grid;grid-template-columns:250px minmax(0,1fr);gap:36px;padding:28px 32px 32px}
+.tc-photo{display:grid;place-items:center;aspect-ratio:5 / 6;border:2px solid var(--ink);border-radius:10px;overflow:hidden;background:linear-gradient(#f4f5ea,#e3e7d0)}
+.tc-photo img{display:block;width:100%;height:100%;object-fit:cover}
+.tc-initials{font:700 76px/1 var(--display);letter-spacing:-4px;color:#2529232e}
+.tc-stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:14px;border:2px solid var(--ink);border-radius:10px;overflow:hidden;background:#fff}
+.tc-stats div{padding:10px 4px 9px;text-align:center}
+.tc-stats div+div{border-left:1px solid var(--line)}
+.tc-stats strong{display:block;font:700 24px/1.15 var(--display)}
+.tc-stats span{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.tc-info{min-width:0}
+.tc-info h3{font-size:36px;letter-spacing:-1.2px;line-height:1.1}
+.tc-facts{margin:16px 0 20px;border-top:1px dashed var(--line)}
+.tc-facts div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.tc-facts dt,.tc-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-top:2px}
+.tc-facts dd{margin:0;font-size:15px}
+.tc-bio{max-width:660px;font-size:16px;color:var(--soft)}
+.tc-bio+.tc-bio{margin-top:10px}
+.tc-off{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-top:22px}
+.tc-off ul{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
+.tc-off li{font-size:12px;padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:#fff}
+
 /* Dialogs */
 dialog{color:var(--ink);border:1px solid var(--ink);border-radius:8px;max-width:560px;width:calc(100% - 32px);background:var(--paper);padding:40px;box-shadow:12px 12px 0 #1e241f33;max-height:90dvh;overflow:auto}
 dialog::backdrop{background:#151d23b8;backdrop-filter:blur(5px)}
@@ -293,6 +318,9 @@ dialog::backdrop{background:#151d23b8;backdrop-filter:blur(5px)}
   .stop-encounter .partner-tag{font-size:11px;max-width:150px;text-align:right;padding-bottom:4px}
 }
 @media(max-width:760px){
+  .tc-body{grid-template-columns:1fr;gap:24px}
+  .tc-side{display:grid;grid-template-columns:140px minmax(0,1fr);gap:14px;align-items:end}
+  .tc-stats{margin-top:0}
   .dex-page{grid-template-columns:1fr;grid-template-rows:auto 1fr}
   .dex-stage{border-right:0;border-bottom:2px solid var(--ink)}
   .dex-stage .partner{--box:200px;--scale:1.7;--lift:24px}
@@ -307,7 +335,18 @@ dialog::backdrop{background:#151d23b8;backdrop-filter:blur(5px)}
   .wordmark{font-size:12px;gap:8px}
   .brand-mark{width:34px;height:34px;font-size:17px}
   nav{gap:13px;font-size:12px}
-  nav button{display:none}
+  nav button,.nav-about{display:none}
+  .about{padding:28px 0 48px}
+  .tc-head{padding:10px 16px;font-size:10px}
+  .tc-body{padding:20px 16px 22px}
+  .tc-side{grid-template-columns:110px minmax(0,1fr)}
+  .tc-initials{font-size:48px;letter-spacing:-3px}
+  .tc-stats strong{font-size:20px}
+  .tc-stats span{font-size:9px;letter-spacing:.08em}
+  .tc-info h3{font-size:28px}
+  .tc-facts div{grid-template-columns:92px minmax(0,1fr);gap:8px}
+  .tc-facts dd{font-size:14px}
+  .tc-bio{font-size:15px}
   .contact-link{padding:6px 8px}
   .intro{grid-template-columns:1fr;min-height:0;padding:35px 0 25px;gap:24px}
   .intro h1{font-size:36px;letter-spacing:-2.2px}

@@ -28,7 +28,7 @@
 <body>
   <header class="topbar">
     <a class="wordmark" href="#" aria-label="Yash Kumar home"><span class="brand-mark">YK</span><span>YASH KUMAR<span class="edition">SOFTWARE ENGINEER</span></span></a>
-    <nav aria-label="Main navigation"><button data-view="journey">Journey</button><button data-view="projects">Projects</button><a href="assets/Resume%20-%20Yash%20Kumar.pdf" target="_blank" rel="noopener">Résumé <span aria-hidden="true">↗</span></a><a class="contact-link" href="mailto:yash.arunkumar@gmail.com">Say hello <span aria-hidden="true">↗</span></a></nav>
+    <nav aria-label="Main navigation"><button data-view="journey">Journey</button><button data-view="projects">Projects</button><a class="nav-about" href="#about">About</a><a href="assets/Resume%20-%20Yash%20Kumar.pdf" target="_blank" rel="noopener">Résumé <span aria-hidden="true">↗</span></a><a class="contact-link" href="mailto:yash.arunkumar@gmail.com">Say hello <span aria-hidden="true">↗</span></a></nav>
   </header>
   <main>
     <section class="intro" aria-labelledby="intro-title">
@@ -76,8 +76,40 @@
       <div class="skill-filter" id="skill-filter" role="group" aria-label="Filter by skill"></div>
       <div id="collection-body" role="tabpanel"></div>
     </section>
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="section-heading"><div><p class="eyebrow">ABOUT</p><h2 id="about-title">About me</h2></div></div>
+      <article class="trainer-card">
+        <header class="tc-head"><span>TRAINER CARD</span><span>ID No. 02412</span></header>
+        <div class="tc-body">
+          <div class="tc-side">
+            <div class="tc-photo">
+              <!-- To use a photo, add it to assets/ and replace the span below with:
+                   <img src="assets/photo.jpg" alt="Yash Kumar" width="500" height="600"> -->
+              <span class="tc-initials" aria-hidden="true">YK</span>
+            </div>
+            <div class="tc-stats">
+              <div><strong>4+</strong><span>Years</span></div>
+              <div><strong>06</strong><span>Projects</span></div>
+              <div><strong>05</strong><span>Badges</span></div>
+            </div>
+          </div>
+          <div class="tc-info">
+            <h3>Yash Kumar</h3>
+            <dl class="tc-facts">
+              <div><dt>Role</dt><dd>Software Engineer II, Uber</dd></div>
+              <div><dt>Based in</dt><dd>San Francisco, CA</dd></div>
+              <div><dt>Education</dt><dd>MS Software Engineering, San José State</dd></div>
+            </dl>
+            <p class="tc-bio">I’m a backend engineer at Uber, working on driver onboarding: moving legacy write paths onto new services without breaking the flows drivers depend on.</p>
+            <p class="tc-bio">Before Uber, I spent three years at Fidelity modernizing data infrastructure and moving apps to AWS, then led the SaaS dashboard at ZETIC while finishing my master’s at San José State.</p>
+            <p class="tc-bio">I like work where reliability shows up in the numbers: success rates, shadow parity, and tests that actually gate a deploy.</p>
+            <div class="tc-off"><span class="tc-label">Off the clock</span><ul><li>Arsenal</li><li>F1 · Lando Norris</li><li>Pokémon</li><li>Anime</li><li>K-pop</li><li>LEGO</li></ul></div>
+          </div>
+        </div>
+      </article>
+    </section>
   </main>
-  <footer><span>© <span id="year">2026</span> Yash Kumar <span class="footer-star">✳</span> A collection in progress.</span><div><a href="mailto:yash.arunkumar@gmail.com">Let’s connect ↗</a><button class="subtle-button" id="credits-button">Sprite credits</button></div></footer>
+  <footer><span>© <span id="year">2026</span> Yash Kumar</span><div><a href="mailto:yash.arunkumar@gmail.com">Let’s connect ↗</a><button class="subtle-button" id="credits-button">Sprite credits</button></div></footer>
   <dialog id="reveal-dialog" aria-labelledby="reveal-title"><div class="reveal-stage"><button class="close-button" id="skip-reveal" aria-label="Skip opening animation">Skip ↗</button><p class="eyebrow" id="reveal-title">OPENING YOUR POKÉ BALL</p><div class="burst" aria-hidden="true"></div><div id="opening-ball" class="opening-ball" aria-hidden="true"><span class="open-top"></span><span class="open-bottom"></span><span class="open-band"></span><span class="open-button"></span><span class="open-light"></span></div><div class="reveal-partner" id="reveal-partner" aria-hidden="true"></div><p class="reveal-message" aria-live="polite">Let’s see what you chose.</p></div></dialog>
   <dialog id="credits-dialog" aria-labelledby="credits-title"><button class="close-button" id="close-credits" aria-label="Close credits">✕</button><h2 id="credits-title">Familiar faces.</h2><p>Red’s animated trainer sprite is from Pokémon Black 2 / White 2. The random Pokémon are animated Black / White sprites, loaded from the PokeAPI sprites project. Pokémon and its artwork belong to Nintendo, Game Freak and The Pokémon Company.</p><a href="https://archives.bulbagarden.net/wiki/File:Spr_B2W2_Red.png" target="_blank" rel="noopener">Red sprite · Bulbagarden Archives ↗</a><a href="https://github.com/PokeAPI/sprites" target="_blank" rel="noopener">Pokémon sprites · PokeAPI ↗</a></dialog>
 </body>
