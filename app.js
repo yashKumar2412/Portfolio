@@ -1,18 +1,18 @@
 const projects = [
-  {name:'EcoQuest',repo:'https://github.com/yashKumar2412/EcoQuest',skills:['fullstack','backend','frontend'],type:'COMMUNITY / HACKATHON',caption:'SMALL ACTIONS. SHARED IMPACT.',color:'#d5df8a',date:'April 2025',metric:'2nd place · SJ Hacks',summary:'Making community cleanup a little more rewarding.',tech:['FastAPI','JavaScript','Google Maps','Firebase'],details:['Built a gamified platform to promote community-driven cleanup efforts.','Integrated maps and activity tracking to help people record and earn rewards for their participation.','Won 2nd place at SJ Hacks 2025.']},
-  {name:'Scales',repo:'https://github.com/yashKumar2412/Scales',skills:['distributed','cloud','backend','reliability','performance'],type:'DISTRIBUTED SYSTEMS',caption:'KEEP THE TRAFFIC MOVING.',color:'#aec9df',date:'January 2025',metric:'Custom load balancer',summary:'Distributing traffic across healthy servers, built from scratch.',tech:['Spring Boot','AWS EC2','Amazon SQS'],details:['Constructed a custom load balancer to distribute traffic dynamically across healthy AWS EC2 instances.','Implemented an SQS-driven heartbeat protocol to support fault tolerance and auto-scaling mechanisms.']},
-  {name:'MarketMind AI Hub',repo:'https://github.com/ankitojha2705/marketmind_AI_Hub',skills:['ai','fullstack','backend','frontend','cloud'],type:'AI / MULTI-AGENT',caption:'A TEAM BEHIND THE WORKFLOW.',color:'#eab492',date:'September 2025 – May 2026',metric:'5+ social platforms',summary:'A multi-agent platform for end-to-end marketing workflows.',tech:['React','FastAPI','AWS ECS'],details:['Designed a multi-agent platform to automate marketing workflows across more than five social media platforms.','Built orchestrator-driven agent services for content scheduling and analytics feedback loops.','Deployed the agent services on AWS ECS.']},
-  {name:'NextMeal',repo:'https://github.com/shahchayan9/NextMeal',skills:['backend','distributed','cloud','devops','ai'],type:'CLOUD / AI',caption:'WHAT’S NEXT FOR DINNER?',color:'#d9cee9',date:'October – December 2024',metric:'Distributed microservices',summary:'Restaurant discovery with recommendations and an AI assistant.',tech:['Spring Boot','Python','AWS','OpenSearch','OpenAI API'],details:['Delivered a restaurant platform using distributed REST microservices on AWS.','Implemented a RAG-based assistant with OpenSearch vector search.','Built automated container deployment pipelines with GitHub Actions, ECR, and ECS.','Trained a recommendation model using restaurant data, ratings, and review sentiment.']},
-  {name:'Audit Blockchain',repo:'https://github.com/shahchayan9/Audit-Blockchaining',skills:['distributed','reliability','backend'],type:'RELIABILITY / SYSTEMS',caption:'A RECORD YOU CAN VERIFY.',color:'#b9cfb8',date:'April – May 2025',metric:'Fault-tolerant audit logs',summary:'A distributed system for securely logging and verifying file audits.',tech:['Python','gRPC','Protobuf'],details:['Built a fault-tolerant distributed blockchain system to log and verify file audits.','Implemented leader election, heartbeats, and automatic recovery to improve reliability and consistency.']},
-  {name:'SmartReach',repo:'https://github.com/yashKumar2412/SmartReach',skills:['ai','fullstack','backend','frontend','reliability'],type:'AI / AUTOMATION',caption:'RESEARCH BEFORE REACHING OUT.',color:'#e5ce86',date:'November – December 2025',metric:'Verification in the loop',summary:'Research, verification, and review in one outreach workflow.',tech:['Next.js','FastAPI','SerpAPI'],details:['Built a multi-agent outreach platform that automates research, verification, content generation, and review cycles.','Integrated company verification into the agent pipeline to reduce hallucinations and improve reliability.']}
+  {name:'EcoQuest',types:['grass'],repo:'https://github.com/yashKumar2412/EcoQuest',skills:['fullstack','backend','frontend'],type:'COMMUNITY / HACKATHON',caption:'SMALL ACTIONS. SHARED IMPACT.',color:'#d5df8a',date:'April 2025',metric:'2nd place · SJ Hacks',summary:'Making community cleanup a little more rewarding.',tech:['FastAPI','JavaScript','Google Maps','Firebase'],details:['Built a gamified platform to promote community-driven cleanup efforts.','Integrated maps and activity tracking to help people record and earn rewards for their participation.','Won 2nd place at SJ Hacks 2025.']},
+  {name:'Scales',types:['electric','steel'],repo:'https://github.com/yashKumar2412/Scales',skills:['distributed','cloud','backend','reliability','performance'],type:'DISTRIBUTED SYSTEMS',caption:'KEEP THE TRAFFIC MOVING.',color:'#aec9df',date:'January 2025',metric:'Custom load balancer',summary:'Distributing traffic across healthy servers, built from scratch.',tech:['Spring Boot','AWS EC2','Amazon SQS'],details:['Constructed a custom load balancer to distribute traffic dynamically across healthy AWS EC2 instances.','Implemented an SQS-driven heartbeat protocol to support fault tolerance and auto-scaling mechanisms.']},
+  {name:'MarketMind AI Hub',types:['psychic'],repo:'https://github.com/ankitojha2705/marketmind_AI_Hub',skills:['ai','fullstack','backend','frontend','cloud'],type:'AI / MULTI-AGENT',caption:'A TEAM BEHIND THE WORKFLOW.',color:'#eab492',date:'September 2025 – May 2026',metric:'5+ social platforms',summary:'A multi-agent platform for end-to-end marketing workflows.',tech:['React','FastAPI','AWS ECS'],details:['Designed a multi-agent platform to automate marketing workflows across more than five social media platforms.','Built orchestrator-driven agent services for content scheduling and analytics feedback loops.','Deployed the agent services on AWS ECS.']},
+  {name:'NextMeal',types:['normal'],repo:'https://github.com/shahchayan9/NextMeal',skills:['backend','distributed','cloud','devops','ai'],type:'CLOUD / AI',caption:'WHAT’S NEXT FOR DINNER?',color:'#d9cee9',date:'October – December 2024',metric:'Distributed microservices',summary:'Restaurant discovery with recommendations and an AI assistant.',tech:['Spring Boot','Python','AWS','OpenSearch','OpenAI API'],details:['Delivered a restaurant platform using distributed REST microservices on AWS.','Implemented a RAG-based assistant with OpenSearch vector search.','Built automated container deployment pipelines with GitHub Actions, ECR, and ECS.','Trained a recommendation model using restaurant data, ratings, and review sentiment.']},
+  {name:'Audit Blockchain',types:['steel','rock'],repo:'https://github.com/shahchayan9/Audit-Blockchaining',skills:['distributed','reliability','backend'],type:'RELIABILITY / SYSTEMS',caption:'A RECORD YOU CAN VERIFY.',color:'#b9cfb8',date:'April – May 2025',metric:'Fault-tolerant audit logs',summary:'A distributed system for securely logging and verifying file audits.',tech:['Python','gRPC','Protobuf'],details:['Built a fault-tolerant distributed blockchain system to log and verify file audits.','Implemented leader election, heartbeats, and automatic recovery to improve reliability and consistency.']},
+  {name:'SmartReach',types:['flying'],repo:'https://github.com/yashKumar2412/SmartReach',skills:['ai','fullstack','backend','frontend','reliability'],type:'AI / AUTOMATION',caption:'RESEARCH BEFORE REACHING OUT.',color:'#e5ce86',date:'November – December 2025',metric:'Verification in the loop',summary:'Research, verification, and review in one outreach workflow.',tech:['Next.js','FastAPI','SerpAPI'],details:['Built a multi-agent outreach platform that automates research, verification, content generation, and review cycles.','Integrated company verification into the agent pipeline to reduce hallucinations and improve reliability.']}
 ];
 const journey = [
-  {date:'AUG 2026 – PRESENT',name:'Uber',role:'Software Engineer II',current:true,logo:'assets/logo-uber.svg',logoAlt:'Uber logo',skills:['backend','distributed','reliability','performance','modernization'],points:['Migrated rider-to-driver upgrades off legacy asynchronous write logic at 99.96% success rate for over 1.7M requests/day in Go.','Enabled onboarding flow resolution to deprecate legacy writes for fleet driver cases, reaching 100% shadow parity and 99.998% success for over 24k requests/day by designing and building a new gRPC endpoint in Go and integrating with fleet services.','Fixed 68 integration test suites, including ones gating deployment, raising shared suite pass rates from 89.7% to 98.9%.']},
-  {date:'AUG 2025 – MAY 2026',name:'ZETIC',role:'Software Engineering Intern',logo:'assets/logo-zetic.png',logoAlt:'ZETIC logo',skills:['fullstack','frontend','backend','data','ai','performance','devops','leadership'],points:['Enabled SDK integration for 1000+ customers by leading engineering of the SaaS dashboard on Next.js, TypeScript, and Django.','Achieved a 20× improvement in dashboard latency via API batching, caching, schema optimizations, and backend offloading.','Reduced distribution costs by extending an Airflow pipeline to publish models to Hugging Face, saving $3 per model download.','Improved performance on over 20% of devices by expanding benchmarking across 5 hardware backends using ExecuTorch.','Built a React Native library enabling app developers to integrate AI models into their applications via an SDK wrapper.','Streamlined engineering workflows by rewriting documentation and automating GitHub Actions CI pipelines for faster releases.']},
-  {date:'AUG 2024 – MAY 2026',name:'San José State University',role:'MS · Software Engineering',logo:'assets/logo-sjsu.png',logoAlt:'San José State Spartans logo',skills:['distributed','ai'],points:['Graduated with a 3.86 GPA.','Studied distributed systems, software platforms, security, data mining, and IoT.','Built projects spanning multi-agent systems, distributed infrastructure, and community applications.']},
-  {date:'AUG 2021 – JUL 2024',name:'Fidelity Investments',role:'Software Engineer',logo:'assets/logo-fidelity.png',logoAlt:'Fidelity Investments logo',skills:['backend','fullstack','frontend','distributed','cloud','data','reliability','performance','modernization','devops','leadership'],points:['Modernized legacy data infrastructure by architecting a real-time data pipeline to migrate and transform 60M+ transaction records to Oracle on AWS, improving resiliency and idempotency, and reducing licensing and maintenance costs due to vendor lock-in.','Built and integrated 2 microservices in Spring Boot, incorporating polling mechanisms and shared JAR dependencies into the pipeline.','Engineered an auto-failover application resiliency library, enabling switchover between AWS regions in under 1 minute.','Resolved 10+ production bugs and wrote JUnit tests, reducing daily errors by 70% and boosting Sonar coverage to over 90%.','Automated daily reporting for fintech fund managers with interactive Tableau dashboards, and reduced render times by 60–70% by optimizing SQL queries and offloading live calculations to scheduled ETL scripts.','Managed the SDLC for 25 Spring Boot–Angular full-stack apps, ensuring consistent delivery for the Mutual Funds Ops Platform.','Migrated 10 apps from on-prem to AWS using Jenkins and Terraform, enabling seamless CI/CD and accelerating release cycles.']},
-  {date:'MAY – JUN 2020',name:'Fidelity Investments',role:'Software Engineering Intern',logo:'assets/logo-fidelity.png',logoAlt:'Fidelity Investments logo',skills:['data','modernization'],points:['Contributed to saving millions in licensing and maintenance by writing Spring Batch ETL jobs to decommission legacy software.']},
-  {date:'JUL 2017 – MAY 2021',name:'VNIT Nagpur',role:'BTech · Computer Science & Engineering',logo:'assets/logo-vnit.png',logoAlt:'VNIT Nagpur logo',skills:['ai','leadership'],points:['Graduated with a 3.66 GPA.','Led the ACM Student Chapter and organized coding contests, talks, and workshops.','Built a real-time vision-based sign language translator using Python and OpenCV.']}
+  {date:'AUG 2026 – PRESENT',name:'Uber',role:'Software Engineer II',current:true,story:'final',logo:'assets/logo-uber.svg',logoAlt:'Uber logo',skills:['backend','distributed','reliability','performance','modernization'],points:['Migrated rider-to-driver upgrades off legacy asynchronous write logic at 99.96% success rate for over 1.7M requests/day in Go.','Enabled onboarding flow resolution to deprecate legacy writes for fleet driver cases, reaching 100% shadow parity and 99.998% success for over 24k requests/day by designing and building a new gRPC endpoint in Go and integrating with fleet services.','Fixed 68 integration test suites, including ones gating deployment, raising shared suite pass rates from 89.7% to 98.9%.']},
+  {date:'AUG 2025 – MAY 2026',name:'ZETIC',role:'Software Engineering Intern',story:'tech',logo:'assets/logo-zetic.png',logoAlt:'ZETIC logo',skills:['fullstack','frontend','backend','data','ai','performance','devops','leadership'],points:['Enabled SDK integration for 1000+ customers by leading engineering of the SaaS dashboard on Next.js, TypeScript, and Django.','Achieved a 20× improvement in dashboard latency via API batching, caching, schema optimizations, and backend offloading.','Reduced distribution costs by extending an Airflow pipeline to publish models to Hugging Face, saving $3 per model download.','Improved performance on over 20% of devices by expanding benchmarking across 5 hardware backends using ExecuTorch.','Built a React Native library enabling app developers to integrate AI models into their applications via an SDK wrapper.','Streamlined engineering workflows by rewriting documentation and automating GitHub Actions CI pipelines for faster releases.']},
+  {date:'AUG 2024 – MAY 2026',name:'San José State University',role:'MS · Software Engineering',story:'study',logo:'assets/logo-sjsu.png',logoAlt:'San José State Spartans logo',skills:['distributed','ai'],points:['Graduated with a 3.86 GPA.','Studied distributed systems, software platforms, security, data mining, and IoT.','Built projects spanning multi-agent systems, distributed infrastructure, and community applications.']},
+  {date:'AUG 2021 – JUL 2024',name:'Fidelity Investments',role:'Software Engineer',story:'middle',logo:'assets/logo-fidelity.png',logoAlt:'Fidelity Investments logo',skills:['backend','fullstack','frontend','distributed','cloud','data','reliability','performance','modernization','devops','leadership'],points:['Modernized legacy data infrastructure by architecting a real-time data pipeline to migrate and transform 60M+ transaction records to Oracle on AWS, improving resiliency and idempotency, and reducing licensing and maintenance costs due to vendor lock-in.','Built and integrated 2 microservices in Spring Boot, incorporating polling mechanisms and shared JAR dependencies into the pipeline.','Engineered an auto-failover application resiliency library, enabling switchover between AWS regions in under 1 minute.','Resolved 10+ production bugs and wrote JUnit tests, reducing daily errors by 70% and boosting Sonar coverage to over 90%.','Automated daily reporting for fintech fund managers with interactive Tableau dashboards, and reduced render times by 60–70% by optimizing SQL queries and offloading live calculations to scheduled ETL scripts.','Managed the SDLC for 25 Spring Boot–Angular full-stack apps, ensuring consistent delivery for the Mutual Funds Ops Platform.','Migrated 10 apps from on-prem to AWS using Jenkins and Terraform, enabling seamless CI/CD and accelerating release cycles.']},
+  {date:'MAY – JUN 2020',name:'Fidelity Investments',role:'Software Engineering Intern',story:'first',logo:'assets/logo-fidelity.png',logoAlt:'Fidelity Investments logo',skills:['data','modernization'],points:['Contributed to saving millions in licensing and maintenance by writing Spring Batch ETL jobs to decommission legacy software.']},
+  {date:'JUL 2017 – MAY 2021',name:'VNIT Nagpur',place:'Pallet Town',role:'BTech · Computer Science & Engineering',story:'starter',logo:'assets/logo-vnit.png',logoAlt:'VNIT Nagpur logo',skills:['ai','leadership'],points:['Graduated with a 3.66 GPA.','Led the ACM Student Chapter and organized coding contests, talks, and workshops.','Built a real-time vision-based sign language translator using Python and OpenCV.']}
 ];
 
 const VIEWS = {
@@ -46,6 +46,25 @@ let activeSkill = null;
 const SPRITE_BASE = 'https://cdn.jsdelivr.net/gh/PokeAPI/sprites@c0542f7c51215d9672439012838c99f520596cbd/sprites/pokemon/versions/generation-v/black-white/';
 const SHINY_ODDS = 64;
 
+// Journey Pokémon tell one story per visit, read from the first stop (VNIT) up to today (Uber):
+// a starter, an early-route first catch, the starter's middle form, a study pick, a tech pick, then its final form.
+// Later stops show later stages. Each stop names its part of the story in `story`.
+const STARTERS = [1, 4, 7, 152, 155, 158, 252, 255, 258, 387, 390, 393, 495, 498, 501]; // base forms; +1 is the middle evolution, +2 the final
+const STORY_POOLS = {
+  // Base forms: Caterpie, Weedle, Pidgey, Rattata, Spearow, Sentret, Hoothoot, Poochyena, Zigzagoon, Wurmple, Taillow, Starly, Bidoof, Patrat, Lillipup, Pidove
+  first:[10, 13, 16, 19, 21, 161, 163, 261, 263, 265, 276, 396, 399, 504, 506, 519],
+  // Psychic types at the middle of a three-stage line (Kadabra, Kirlia, Gothorita, Duosion)
+  // or the end of a two-stage line (Xatu, Grumpig, Bronzong, Musharna, Beheeyem)
+  study:[64, 281, 575, 578, 178, 326, 437, 518, 606],
+  // Final forms of two- or three-stage lines: Electrode, Magnezone, Electivire, Porygon-Z, Galvantula, Klinklang, Eelektross.
+  // Metagross is left out because it is one of the rare finals below.
+  tech:[101, 462, 466, 474, 596, 601, 604]
+};
+const STARTER_LINE = ['starter', 'middle', 'final'];
+// Now and then the final stop shows a pseudo-legendary or a legendary instead of the starter's final form.
+const RARE_FINALS = [149, 248, 373, 376, 445, 635, 144, 145, 146, 150, 243, 244, 245, 249, 250, 377, 378, 379, 380, 381, 382, 383, 384, 480, 481, 482, 483, 484, 485, 486, 487, 488, 638, 639, 640, 641, 642, 643, 644, 645, 646];
+const RARE_ODDS = 10;
+
 const $ = (s) => document.querySelector(s);
 const collection = $('#collection');
 const panel = $('#collection-body');
@@ -61,13 +80,35 @@ const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>
 const pad = (n) => String(n).padStart(3, '0');
 const scrollBehavior = () => reducedMotion.matches ? 'instant' : 'smooth';
 
-function rollPokemon(used) {
-  let id;
-  do id = 1 + Math.floor(Math.random() * POKEDEX.length); while (used.has(id));
+const pick = (list) => list[Math.floor(Math.random() * list.length)];
+const rollShiny = () => Math.random() < 1 / SHINY_ODDS;
+// One Pokémon from `pool`, avoiding ids already in `used` while the pool allows it.
+function rollFrom(pool, used = new Set()) {
+  const open = pool.filter(id => !used.has(id));
+  const id = pick(open.length ? open : pool);
   used.add(id);
-  return {id, shiny: Math.random() < 1 / SHINY_ODDS};
+  return {id, shiny:rollShiny()};
 }
-function rollParty(count) {const used = new Set();return Array.from({length:count}, () => rollPokemon(used));}
+// Projects draw only from Pokémon that share one of their types.
+const ALL_IDS = Array.from({length:POKEDEX.length}, (_, i) => i + 1);
+const PROJECT_POOLS = projects.map(p => ALL_IDS.filter(id => POKETYPES[id - 1].some(t => p.types.includes(t))));
+function rollProjects() {const used = new Set();return projects.map((_, i) => rollFrom(PROJECT_POOLS[i], used));}
+// A starter and its evolutions share one shiny roll, as in the games; a rare final rolls its own.
+function rollLine(avoid = new Set()) {
+  const base = rollFrom(STARTERS, avoid).id;
+  const shiny = rollShiny();
+  return {
+    starter:{id:base, shiny},
+    middle:{id:base + 1, shiny, from:base},
+    final:Math.random() < 1 / RARE_ODDS ? rollFrom(RARE_FINALS) : {id:base + 2, shiny, from:base + 1}
+  };
+}
+function rollJourney() {
+  const line = rollLine();
+  const used = new Set();
+  return journey.map(stop => line[stop.story] || rollFrom(STORY_POOLS[stop.story], used));
+}
+const rollView = (view) => view === 'projects' ? rollProjects() : rollJourney();
 function spriteUrl(mon, animated = true) {const dir = mon.shiny ? 'shiny/' : '';return animated ? `${SPRITE_BASE}animated/${dir}${mon.id}.gif` : `${SPRITE_BASE}${dir}${mon.id}.png`;}
 function preload(party) {party.forEach(mon => {new Image().src = spriteUrl(mon);});return party;}
 function monInfo(mon) {const [name, genus] = POKEDEX[mon.id - 1];return {name, genus};}
@@ -76,9 +117,8 @@ function monInfo(mon) {const [name, genus] = POKEDEX[mon.id - 1];return {name, g
 const encounters = {};
 const nextEncounters = {};
 viewNames.forEach(view => {
-  const size = VIEWS[view].items.length;
-  encounters[view] = rollParty(size);
-  nextEncounters[view] = rollParty(size);
+  encounters[view] = rollView(view);
+  nextEncounters[view] = rollView(view);
   preload(nextEncounters[view].slice(0, 1));
 });
 
@@ -89,7 +129,8 @@ function spriteImg(mon) {
 function partnerButton(view, i, delay) {
   const mon = encounters[view][i];
   const {name} = monInfo(mon);
-  return `<button class="partner${mon.shiny ? ' shiny' : ''}" style="--d:${delay}" data-reroll="${view}" data-index="${i}" aria-label="${mon.shiny ? 'Shiny ' : ''}${esc(name)}. Swap for another Pokémon">${spriteImg(mon)}<span class="partner-platform" aria-hidden="true"></span></button>`;
+  const swap = view === 'journey' && STARTER_LINE.includes(journey[i].story) ? 'Swap for a new starter line' : 'Swap for another Pokémon';
+  return `<button class="partner${mon.shiny ? ' shiny' : ''}" style="--d:${delay}" data-reroll="${view}" data-index="${i}" aria-label="${mon.shiny ? 'Shiny ' : ''}${esc(name)}. ${swap}">${spriteImg(mon)}<span class="partner-platform" aria-hidden="true"></span></button>`;
 }
 
 function renderProjects() {
@@ -126,7 +167,7 @@ function renderEntry(i, delay) {
   const p = projects[i];
   const mon = encounters.projects[i];
   const {name, genus} = monInfo(mon);
-  return `<div class="dex-stage" style="--card-bg:${p.color}"><span class="dex-stage-top"><span>No. ${pad(i + 1)}</span><span>${p.type}</span></span>${partnerButton('projects', i, delay)}<span class="partner-tag">${mon.shiny ? '<span class="shiny-mark">✦ SHINY</span> ' : ''}#${pad(mon.id)} ${esc(name)}<small>${esc(genus)} Pokémon · tap to swap</small></span></div><div class="dex-info"><p class="dex-flavor">${p.caption}</p><h3 id="dex-title-${i}">${p.name}</h3><p class="dex-meta">${p.date} · ${p.metric}</p><p class="dex-summary">${p.summary}</p><h4>What I built</h4><ul>${bulletsHTML(p.details, skillFor(p))}</ul><h4>Built with</h4><div class="tech-tags">${techHTML(p.tech, skillFor(p))}</div>${repoLink(p)}</div>`;
+  return `<div class="dex-stage" style="--card-bg:${p.color}"><span class="dex-stage-top"><span>No. ${pad(i + 1)}</span><span>${p.type}</span></span>${partnerButton('projects', i, delay)}<span class="partner-tag">${mon.shiny ? '<span class="shiny-mark">✦ SHINY</span> ' : ''}#${pad(mon.id)} ${esc(name)}<span class="mon-types"><span class="visually-hidden">${esc(name)}’s type: </span>${typeSpans(POKETYPES[mon.id - 1])}</span><small>${esc(genus)} Pokémon · tap to swap</small></span></div><div class="dex-info"><p class="dex-flavor">${p.caption}</p><h3 id="dex-title-${i}">${p.name}</h3>${typeBadges(p.types)}<p class="dex-meta">${p.date} · ${p.metric}</p><p class="dex-summary">${p.summary}</p><h4>What I built</h4><ul>${bulletsHTML(p.details, skillFor(p))}</ul><h4>Built with</h4><div class="tech-tags">${techHTML(p.tech, skillFor(p))}</div>${repoLink(p)}</div>`;
 }
 // The active skill if this job or project used it, otherwise null.
 function skillFor(item) {return activeSkill && item.skills.includes(activeSkill) ? SKILL[activeSkill] : null;}
@@ -139,13 +180,22 @@ function repoLink(p) {
   const team = owner.toLowerCase() !== 'yashkumar2412';
   return `<div class="repo-row"><a class="detail-link" href="${p.repo}" target="_blank" rel="noopener">${team ? 'Team repo on GitHub' : 'View the code on GitHub'} ↗</a>${team ? `<span class="repo-owner">Hosted by @${esc(owner)}</span>` : ''}</div>`;
 }
+const typeSpans = (types) => types.map(t => `<span class="type-badge type-${t}">${t}</span>`).join('');
+// The project's types, which decide the Pokémon it can draw.
+function typeBadges(types) {return `<p class="type-row"><span class="visually-hidden">Type: </span>${typeSpans(types)}</p>`;}
+// The line under each journey Pokémon: the starter, its evolutions, or a wild encounter.
+function encounterLine(mon, stop) {
+  const name = `${mon.shiny ? '<span class="shiny-mark">shiny</span> ' : ''}${esc(monInfo(mon).name)}`;
+  if (mon.from) return `${esc(monInfo({id:mon.from}).name)} evolved into ${name}!`;
+  if (stop.story === 'starter') return `You chose ${name}!`;
+  return `A wild ${name} appeared!`;
+}
 function encounterHTML(i, delay) {
-  const mon = encounters.journey[i];
-  return `${partnerButton('journey', i, delay)}<span class="partner-tag">A wild ${mon.shiny ? '<span class="shiny-mark">shiny</span> ' : ''}${esc(monInfo(mon).name)} appeared!</span>`;
+  return `${partnerButton('journey', i, delay)}<span class="partner-tag">${encounterLine(encounters.journey[i], journey[i])}</span>`;
 }
 function renderJourney() {
-  const stops = journey.map((j, i) => `<li class="stop ${i % 2 ? 'stop-right' : 'stop-left'}${j.current ? ' current' : ''}" style="--i:${i}"><div class="stop-card"><details data-state="${j.current ? 'open' : 'closed'}"${j.current ? ' open' : ''}><summary><span class="journey-logo-wrap"><img class="journey-logo" src="${j.logo}" alt="${j.logoAlt}"></span><span class="milestone-copy"><time>${j.date}</time>${j.current ? '<span class="now-badge">YOU ARE HERE</span>' : ''}<h3>${j.name}</h3><span class="role">${j.role}</span></span></summary><ul>${bulletsHTML(j.points, skillFor(j))}</ul></details></div><span class="stop-node" aria-hidden="true"></span><div class="stop-encounter">${encounterHTML(i, i)}</div></li>`).join('');
-  return `<p class="timeline-intro">The latest chapter first, from the systems I work on today back to where I started. Every stop has its own wild encounter.</p><ol class="route">${stops}</ol>`;
+  const stops = journey.map((j, i) => `<li class="stop ${i % 2 ? 'stop-right' : 'stop-left'}${j.current ? ' current' : ''}" style="--i:${i}"><div class="stop-card"><details data-state="${j.current ? 'open' : 'closed'}"${j.current ? ' open' : ''}><summary><span class="journey-logo-wrap"><img class="journey-logo" src="${j.logo}" alt="${j.logoAlt}"></span><span class="milestone-copy"><time>${j.date}</time>${j.current ? '<span class="now-badge">YOU ARE HERE</span>' : ''}${j.place ? `<span class="place-badge">${j.place}</span>` : ''}<h3>${j.name}</h3><span class="role">${j.role}</span></span></summary><ul>${bulletsHTML(j.points, skillFor(j))}</ul></details></div><span class="stop-node" aria-hidden="true"></span><div class="stop-encounter">${encounterHTML(i, i)}</div></li>`).join('');
+  return `<p class="timeline-intro">The latest chapter first, from the systems I work on today back to where I started. The starter from the first stop evolves along the way.</p><ol class="route">${stops}</ol>`;
 }
 
 function showCollection(view, focus = true) {
@@ -200,12 +250,20 @@ function refreshSprite(view, i) {
   }
 }
 function reroll(view, i) {
-  encounters[view][i] = rollPokemon(new Set(encounters[view].map(mon => mon.id)));
-  refreshSprite(view, i);
+  const party = encounters[view];
+  if (view === 'journey' && STARTER_LINE.includes(journey[i].story)) {
+    // The starter line is one story, so swapping any part of it rolls a whole new line.
+    const line = rollLine(new Set([party[journey.findIndex(stop => stop.story === 'starter')].id]));
+    journey.forEach((stop, n) => {if (line[stop.story]) {party[n] = line[stop.story];refreshSprite(view, n);}});
+  } else {
+    const pool = view === 'projects' ? PROJECT_POOLS[i] : STORY_POOLS[journey[i].story];
+    party[i] = rollFrom(pool, new Set(party.map(mon => mon.id)));
+    refreshSprite(view, i);
+  }
   document.querySelector(`.partner[data-reroll="${view}"][data-index="${i}"]`)?.focus();
 }
 function rerollAll() {
-  encounters[selectedView] = rollParty(VIEWS[selectedView].items.length);
+  encounters[selectedView] = rollView(selectedView);
   encounters[selectedView].forEach((_, i) => refreshSprite(selectedView, i));
 }
 
@@ -216,7 +274,7 @@ function openPack(view, trigger) {
   if (!VIEWS[view]) return;
   openingView = view;lastTrigger = trigger;
   encounters[view] = preload(nextEncounters[view]);
-  nextEncounters[view] = rollParty(VIEWS[view].items.length);
+  nextEncounters[view] = rollView(view);
   preload(nextEncounters[view].slice(0, 1));
   if (view === 'projects') selectedProject = 0;
   if (reducedMotion.matches) {showCollection(view);return;}

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
-:root{--paper:#f5f2e9;--card:#fffdf5;--ink:#252923;--muted:#686b61;--soft:#555b51;--line:#d5d5c7;--coral:#dd603e;--blue:#3253a5;--lime:#d3de68;--trail:#e8dfc6;--trail-edge:#cbbd95;--display:'Space Grotesk',Arial,sans-serif;--body:'DM Sans',Arial,sans-serif}
+:root{--paper:#f5f2e9;--card:#fffdf5;--ink:#252923;--muted:#686b61;--soft:#555b51;--line:#d5d5c7;--coral:#dd603e;--blue:#3253a5;--lime:#d3de68;--master:#6f47a8;--master-pink:#e66aa6;--trail:#e8dfc6;--trail-edge:#cbbd95;--display:'Space Grotesk',Arial,sans-serif;--body:'DM Sans',Arial,sans-serif}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{scroll-behavior:smooth;scroll-padding-top:24px}
@@ -86,7 +86,11 @@ footer>div{display:flex;gap:22px}
 .poke-choice:hover{transform:translateY(-9px)}
 .poke-choice:hover .poke-ball{filter:drop-shadow(0 17px 12px #20261928);transform:rotate(-5deg) scale(1.035)}
 .poke-ball{--ball-top:var(--coral);position:relative;display:block;width:min(100%,250px);aspect-ratio:1;margin:auto;filter:drop-shadow(0 11px 8px #20261925);transition:transform .3s,filter .3s}
-.poke-journey .poke-ball{--ball-top:var(--blue)}
+.poke-journey .poke-ball{--ball-top:var(--master)}
+/* Master Ball: purple top, a pink bump on each side and a white "M". Sizes are in cqw so they scale with the ball. */
+.poke-ball,.opening-ball{container-type:inline-size}
+.poke-journey .poke-top,.opening-journey .open-top{background:radial-gradient(circle closest-side,var(--master-pink) 0 94%,#0000 100%) left -4cqw top 38% / 30cqw 30cqw no-repeat,radial-gradient(circle closest-side,var(--master-pink) 0 94%,#0000 100%) right -4cqw top 38% / 30cqw 30cqw no-repeat,var(--master)}
+.poke-journey .poke-top:after,.opening-journey .open-top:after{content:'M';position:absolute;left:50%;top:44%;translate:-50% -50%;color:#fffdf5;font:700 19cqw/1 var(--display);letter-spacing:-.04em}
 .poke-top,.poke-bottom{position:absolute;left:0;width:100%;height:50%;border:4px solid var(--ink);overflow:hidden}
 .poke-top{top:0;background:var(--ball-top);border-radius:999px 999px 0 0;border-bottom:0}
 .poke-bottom{bottom:0;background:#fffdf5;border-radius:0 0 999px 999px;border-top:0}
@@ -163,6 +167,15 @@ footer>div{display:flex;gap:22px}
 .dex-flavor{font-size:10px;letter-spacing:.14em;font-weight:700;color:var(--muted)}
 .dex-info h3{font-size:36px;letter-spacing:-1.2px;line-height:1.15;margin-top:6px}
 .dex-meta{font-size:12px;letter-spacing:.05em;color:var(--blue);font-weight:700;margin-top:8px}
+/* Pokémon type badges: each project's types, in the games' type colours */
+.type-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.type-badge{--type:#a8a77a;min-width:76px;padding:3px 10px;border:1.5px solid var(--ink);border-radius:4px;background:var(--type);box-shadow:inset 0 -3px 0 #0000001f,inset 0 2px 0 #ffffff59;color:var(--ink);font:700 10px/1.5 var(--display);letter-spacing:.14em;text-transform:uppercase;text-align:center}
+.type-fire{--type:#ee8130}.type-water{--type:#6390f0}.type-electric{--type:#f7d02c}.type-grass{--type:#7ac74c}.type-ice{--type:#96d9d6}.type-ground{--type:#e2bf65}.type-flying{--type:#a98ff3}.type-psychic{--type:#f95587}.type-bug{--type:#a6b91a}.type-rock{--type:#b6a136}.type-steel{--type:#b7b7ce}.type-fairy{--type:#d685ad}
+.type-fighting{--type:#c22e28}.type-poison{--type:#a33ea1}.type-ghost{--type:#735797}.type-dragon{--type:#6f35fc}.type-dark{--type:#705746}
+.type-fighting,.type-poison,.type-ghost,.type-dragon,.type-dark{color:#fffdf5}
+/* The Pokémon's own types, under its name on the Pokédex screen */
+.mon-types{display:flex;justify-content:center;flex-wrap:wrap;gap:5px;margin:6px 0 5px}
+.mon-types .type-badge{min-width:64px;padding:2px 8px;font-size:9px;border-width:1.5px}
 .dex-summary{font-size:17px;margin-top:14px}
 .dex-info h4{font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin:24px 0 8px}
 .dex-info ul{padding-left:20px;margin:0;font-size:15px}
@@ -207,8 +220,8 @@ mark{background:#e2ec86;color:inherit;border-radius:2px;padding:0 2px;-webkit-bo
 .stop-card,.stop-node,.stop-encounter{grid-row:1}
 .stop-left .stop-card{grid-column:1}
 .stop-right .stop-card{grid-column:3}
-.stop-node{grid-column:2;justify-self:center;z-index:1;width:26px;height:26px;border-radius:50%;border:3px solid var(--ink);background:linear-gradient(var(--blue) 0 43%,var(--ink) 43% 57%,#fffdf5 57%);box-shadow:0 0 0 4px var(--paper)}
-.stop.current .stop-node{background:linear-gradient(var(--coral) 0 43%,var(--ink) 43% 57%,#fffdf5 57%);animation:node-pulse 2s ease-out infinite}
+.stop-node{grid-column:2;justify-self:center;z-index:1;width:26px;height:26px;border-radius:50%;border:3px solid var(--ink);background:radial-gradient(circle at 12% 30%,var(--master-pink) 0 3px,#0000 3.5px),radial-gradient(circle at 88% 30%,var(--master-pink) 0 3px,#0000 3.5px),linear-gradient(var(--master) 0 43%,var(--ink) 43% 57%,#fffdf5 57%);box-shadow:0 0 0 4px var(--paper)}
+.stop.current .stop-node{animation:node-pulse 2s ease-out infinite}
 .stop-encounter{display:flex;flex-direction:column;align-items:center;gap:2px;padding:0 26px}
 .stop-left .stop-encounter{grid-column:3;justify-self:start}
 .stop-right .stop-encounter{grid-column:1;justify-self:end}
@@ -224,6 +237,7 @@ mark{background:#e2ec86;color:inherit;border-radius:2px;padding:0 2px;-webkit-bo
 .milestone-copy{display:block;min-width:0}
 .stop time{font-size:11px;letter-spacing:.07em;color:var(--blue);font-weight:700}
 .now-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.08em;margin-left:9px;background:var(--lime);padding:2px 6px;line-height:1.5}
+.place-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-left:9px;padding:1px 6px;line-height:1.5;color:var(--ink);background:var(--trail);border:1px solid var(--trail-edge);border-radius:3px}
 .stop h3{font-size:22px;letter-spacing:-.5px;line-height:1.25;margin-top:3px}
 .role{display:block;font-size:14px;color:var(--muted);margin-top:2px}
 .journey-logo-wrap{display:grid;place-items:center;flex:0 0 76px;width:76px;height:56px;background:#fff;border:1px solid var(--line);border-radius:5px;overflow:hidden}
@@ -266,7 +280,8 @@ dialog::backdrop{background:#151d23b8;backdrop-filter:blur(5px)}
 .reveal-stage>.eyebrow{position:absolute;top:13dvh;z-index:9}
 .burst{position:absolute;left:50%;top:50%;width:540px;height:540px;translate:-50% -50%;border-radius:50%;background:repeating-conic-gradient(from 0deg,#fff0 0 8deg,#fff2 8deg 11deg);opacity:0;z-index:0;animation:burst-in .8s 1.22s ease-out both}
 .opening-ball{--open-color:var(--coral);position:relative;width:300px;height:300px;z-index:4;animation:ball-arrive .45s ease-out both,ball-shake .78s .48s ease-in-out both}
-.opening-journey{--open-color:var(--blue)}
+.opening-journey{--open-color:var(--master)}
+.opening-journey .open-light{box-shadow:0 0 25px 15px #fff,0 0 90px 55px #f3e4ff}
 .open-top,.open-bottom{position:absolute;left:0;width:100%;height:50%;border:5px solid var(--ink);z-index:3}
 .open-top{top:0;background:var(--open-color);border-radius:999px 999px 0 0;border-bottom:0;transform-origin:bottom center;animation:lid-open .5s 1.25s cubic-bezier(.2,.8,.2,1) forwards}
 .open-bottom{bottom:0;background:#fffdf5;border-radius:0 0 999px 999px;border-top:0;animation:base-drop .45s 1.5s ease-in forwards}
@@ -285,7 +300,7 @@ dialog::backdrop{background:#151d23b8;backdrop-filter:blur(5px)}
 @keyframes screen-on{0%{filter:brightness(1.6) saturate(.4)}100%{filter:none}}
 @keyframes release{0%{opacity:0;transform:scale(.15);filter:brightness(0) invert(1)}45%{opacity:1;transform:scale(1.08);filter:brightness(0) invert(1) drop-shadow(0 0 6px #fff)}100%{opacity:1;transform:none;filter:none}}
 @keyframes twinkle{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
-@keyframes node-pulse{0%{box-shadow:0 0 0 4px var(--paper),0 0 0 4px #dd603e66}70%,100%{box-shadow:0 0 0 4px var(--paper),0 0 0 16px #dd603e00}}
+@keyframes node-pulse{0%{box-shadow:0 0 0 4px var(--paper),0 0 0 4px #e66aa680}70%,100%{box-shadow:0 0 0 4px var(--paper),0 0 0 16px #e66aa600}}
 @keyframes ball-arrive{from{opacity:0;transform:translateY(130px) scale(.55)}to{opacity:1;transform:none}}
 @keyframes ball-shake{0%,100%{transform:rotate(0)}20%{transform:rotate(-10deg)}40%{transform:rotate(10deg)}60%{transform:rotate(-7deg)}80%{transform:rotate(7deg)}}
 @keyframes button-flash{0%,45%{background:#fffdf5;box-shadow:inset 0 0 0 4px #d5d5c7}50%,100%{background:#ffdf4e;box-shadow:0 0 24px #ffdf4e,inset 0 0 0 4px #fff7b0}}
@@ -410,7 +425,7 @@ dialog::backdrop{background:#151d23b8;backdrop-filter:blur(5px)}
   .journey-logo{padding:6px}
   .stop h3{font-size:20px}
   .stop time{font-size:10px}
-  .now-badge{margin-left:0}
+  .now-badge,.place-badge{margin-left:0}
   .stop-card details{padding:15px}
   .stop-card ul{margin-left:0;font-size:14px}
   footer{flex-direction:column;gap:9px;padding-bottom:25px}
