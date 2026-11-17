@@ -12,7 +12,7 @@ const journey = [
   {date:'AUG 2024 – MAY 2026',name:'San José State University',role:'MS · Software Engineering',story:'study',logo:'assets/logo-sjsu.png',logoAlt:'San José State Spartans logo',skills:['distributed','ai'],points:['Graduated with a 3.86 GPA.','Studied distributed systems, software platforms, security, data mining, and IoT.','Built projects spanning multi-agent systems, distributed infrastructure, and community applications.']},
   {date:'AUG 2021 – JUL 2024',name:'Fidelity Investments',role:'Software Engineer',story:'middle',logo:'assets/logo-fidelity.png',logoAlt:'Fidelity Investments logo',skills:['backend','fullstack','frontend','distributed','cloud','data','reliability','performance','modernization','devops','leadership'],points:['Modernized legacy data infrastructure by architecting a real-time data pipeline to migrate and transform 60M+ transaction records to Oracle on AWS, improving resiliency and idempotency, and reducing licensing and maintenance costs due to vendor lock-in.','Built and integrated 2 microservices in Spring Boot, incorporating polling mechanisms and shared JAR dependencies into the pipeline.','Engineered an auto-failover application resiliency library, enabling switchover between AWS regions in under 1 minute.','Resolved 10+ production bugs and wrote JUnit tests, reducing daily errors by 70% and boosting Sonar coverage to over 90%.','Automated daily reporting for fintech fund managers with interactive Tableau dashboards, and reduced render times by 60–70% by optimizing SQL queries and offloading live calculations to scheduled ETL scripts.','Managed the SDLC for 25 Spring Boot–Angular full-stack apps, ensuring consistent delivery for the Mutual Funds Ops Platform.','Migrated 10 apps from on-prem to AWS using Jenkins and Terraform, enabling seamless CI/CD and accelerating release cycles.']},
   {date:'MAY – JUN 2020',name:'Fidelity Investments',role:'Software Engineering Intern',story:'first',logo:'assets/logo-fidelity.png',logoAlt:'Fidelity Investments logo',skills:['data','modernization'],points:['Contributed to saving millions in licensing and maintenance by writing Spring Batch ETL jobs to decommission legacy software.']},
-  {date:'JUL 2017 – MAY 2021',name:'VNIT Nagpur',place:'Pallet Town',role:'BTech · Computer Science & Engineering',story:'starter',logo:'assets/logo-vnit.png',logoAlt:'VNIT Nagpur logo',skills:['ai','leadership'],points:['Graduated with a 3.66 GPA.','Led the ACM Student Chapter and organized coding contests, talks, and workshops.','Built a real-time vision-based sign language translator using Python and OpenCV.']}
+  {date:'JUL 2017 – MAY 2021',name:'VNIT Nagpur',role:'BTech · Computer Science & Engineering',story:'starter',logo:'assets/logo-vnit.png',logoAlt:'VNIT Nagpur logo',skills:['ai','leadership'],points:['Graduated with a 3.66 GPA.','Led the ACM Student Chapter and organized coding contests, talks, and workshops.','Built a real-time vision-based sign language translator using Python and OpenCV.']}
 ];
 
 const VIEWS = {
@@ -61,6 +61,8 @@ const STORY_POOLS = {
   tech:[101, 462, 466, 474, 596, 601, 604]
 };
 const STARTER_LINE = ['starter', 'middle', 'final'];
+// The first stop is named after the hometown where that generation's games start: [last Dex number of the generation, town].
+const STARTER_TOWNS = [[151, 'Pallet Town'], [251, 'New Bark Town'], [386, 'Littleroot Town'], [493, 'Twinleaf Town'], [649, 'Nuvema Town']];
 // Now and then the final stop shows a pseudo-legendary or a legendary instead of the starter's final form.
 const RARE_FINALS = [149, 248, 373, 376, 445, 635, 144, 145, 146, 150, 243, 244, 245, 249, 250, 377, 378, 379, 380, 381, 382, 383, 384, 480, 481, 482, 483, 484, 485, 486, 487, 488, 638, 639, 640, 641, 642, 643, 644, 645, 646];
 const RARE_ODDS = 10;
@@ -190,11 +192,15 @@ function encounterLine(mon, stop) {
   if (stop.story === 'starter') return `You chose ${name}!`;
   return `A wild ${name} appeared!`;
 }
+function starterTown() {
+  const starter = encounters.journey[journey.findIndex(stop => stop.story === 'starter')];
+  return STARTER_TOWNS.find(([last]) => starter.id <= last)[1];
+}
 function encounterHTML(i, delay) {
   return `${partnerButton('journey', i, delay)}<span class="partner-tag">${encounterLine(encounters.journey[i], journey[i])}</span>`;
 }
 function renderJourney() {
-  const stops = journey.map((j, i) => `<li class="stop ${i % 2 ? 'stop-right' : 'stop-left'}${j.current ? ' current' : ''}" style="--i:${i}"><div class="stop-card"><details data-state="${j.current ? 'open' : 'closed'}"${j.current ? ' open' : ''}><summary><span class="journey-logo-wrap"><img class="journey-logo" src="${j.logo}" alt="${j.logoAlt}"></span><span class="milestone-copy"><time>${j.date}</time>${j.current ? '<span class="now-badge">YOU ARE HERE</span>' : ''}${j.place ? `<span class="place-badge">${j.place}</span>` : ''}<h3>${j.name}</h3><span class="role">${j.role}</span></span></summary><ul>${bulletsHTML(j.points, skillFor(j))}</ul></details></div><span class="stop-node" aria-hidden="true"></span><div class="stop-encounter">${encounterHTML(i, i)}</div></li>`).join('');
+  const stops = journey.map((j, i) => `<li class="stop ${i % 2 ? 'stop-right' : 'stop-left'}${j.current ? ' current' : ''}" style="--i:${i}"><div class="stop-card"><details data-state="${j.current ? 'open' : 'closed'}"${j.current ? ' open' : ''}><summary><span class="journey-logo-wrap"><img class="journey-logo" src="${j.logo}" alt="${j.logoAlt}"></span><span class="milestone-copy"><time>${j.date}</time>${j.current ? '<span class="now-badge">YOU ARE HERE</span>' : ''}${j.story === 'starter' ? `<span class="place-badge" id="starter-town">${starterTown()}</span>` : ''}<h3>${j.name}</h3><span class="role">${j.role}</span></span></summary><ul>${bulletsHTML(j.points, skillFor(j))}</ul></details></div><span class="stop-node" aria-hidden="true"></span><div class="stop-encounter">${encounterHTML(i, i)}</div></li>`).join('');
   return `<p class="timeline-intro">The latest chapter first, from the systems I work on today back to where I started. The starter from the first stop evolves along the way.</p><ol class="route">${stops}</ol>`;
 }
 
@@ -247,6 +253,8 @@ function refreshSprite(view, i) {
   } else {
     const slot = document.querySelectorAll('.stop-encounter')[i];
     if (slot) slot.innerHTML = encounterHTML(i, 0);
+    const town = $('#starter-town');
+    if (town && journey[i].story === 'starter') town.textContent = starterTown();
   }
 }
 function reroll(view, i) {
